@@ -1,17 +1,17 @@
 // Functions of a calculator
-function add (a, b) {
+function toAdd (a, b) {
     return a + b;
 };
 
-function subtract(a, b) {
+function toSubtract(a, b) {
     return a - b;
 };
 
-function multiply(a, b) {
+function toMultiply(a, b) {
     return a * b;
 };
 
-function divide(a, b) {
+function toDivide(a, b) {
     return a / b;
 };
 
@@ -23,13 +23,13 @@ let displaySecondNumber;
 // Function that calls calculator operator functions on 2 numbers
 function operator(mathOperator, firstNum, secondNum) {
     if (mathOperator === "+") {
-        return add(firstNum, secondNum);
+        return toAdd(firstNum, secondNum);
     } else if (mathOperator === "-") {
-        return subtract(firstNum, secondNum);
+        return toSubtract(firstNum, secondNum);
     } else if (mathOperator === "*") {
-        return multiply(firstNum, secondNum);
+        return toMultiply(firstNum, secondNum);
     } else if (mathOperator === "/") {
-        return divide(firstNum, secondNum);
+        return toDivide(firstNum, secondNum);
     };
 };
 
@@ -47,42 +47,66 @@ function handleDigitClick(digit) {
     console.log(displayValue);
 }
 
-// Handle when "0" is clicked
 const zero = document.querySelector(".zero");
 zero.addEventListener("click", () => handleDigitClick(0));
 
-// Handle when "1" is clicked
 const one = document.querySelector(".one");
 one.addEventListener("click", () => handleDigitClick(1));
 
-// Handle when "2" is clicked
 const two = document.querySelector(".two");
 two.addEventListener("click", () => handleDigitClick(2));
 
-// Handle when "3" is clicked
 const three = document.querySelector(".three");
 three.addEventListener("click", () => handleDigitClick(3));
 
-// Handle when "4" is clicked
 const four = document.querySelector(".four");
 four.addEventListener("click", () => handleDigitClick(4));
 
-// Handle when "5" is clicked
 const five = document.querySelector(".five");
 five.addEventListener("click", () => handleDigitClick(5));
 
-// Handle when "6" is clicked
 const six = document.querySelector(".six");
 six.addEventListener("click", () => handleDigitClick(6));
 
-// Handle when "7" is clicked
 const seven = document.querySelector(".seven");
 seven.addEventListener("click", () => handleDigitClick(7));
 
-// Handle when "8" is clicked
 const eight = document.querySelector(".eight");
 eight.addEventListener("click", () => handleDigitClick(8));
 
-// Handle when "9" is clicked
 const nine = document.querySelector(".nine");
 nine.addEventListener("click", () => handleDigitClick(9));
+
+// Functions that handle operator clicks
+
+let valueA = 0;
+let valueB = 0;
+let mathOperator = "";
+const add = document.querySelector(".add");
+const subtract = document.querySelector(".subtract");
+const multiply = document.querySelector(".multiply");
+const divide = document.querySelector(".divide");
+
+function handleOperatorClick(opr) {
+    valueA = displayValue;
+    displayValue = 0;
+    mathOperator = opr;
+};
+
+add.addEventListener("click", () => handleOperatorClick("+"));
+subtract.addEventListener("click", () => handleOperatorClick("-"));
+multiply.addEventListener("click", () => handleOperatorClick("*"));
+divide.addEventListener("click", () => handleOperatorClick("/"));
+
+// Functions than handle equal click
+
+const equalsTo = document.querySelector(".equals-to");
+function handleEqualsToClick() {
+    valueB = displayValue;
+    let result = operator(mathOperator, valueA, valueB);
+    display.textContent = result;
+    displayValue = result;
+}
+equalsTo.addEventListener("click", handleEqualsToClick);
+
+
