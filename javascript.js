@@ -19,3 +19,16 @@ function divide(a, b) {
 let firstNumber;
 let operator;
 let secondNumber;
+
+// Function that calls operator functions on 2 numbers
+function operator(mathOperator, firstNum, secondNum) {
+    if (mathOperator === "+") {
+        return add(firstNum, secondNum);
+    } else if (mathOperator === "-") {
+        return subtract(firstNum, secondNum);
+    } else if (mathOperator === "*") {
+        return multiply(firstNum, secondNum);
+    } else if (mathOperator === "/") {
+        return divide(firstNum, secondNum);
+    };
+};
