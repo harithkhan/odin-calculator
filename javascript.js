@@ -1,19 +1,21 @@
+// Functions of a calculator
 function add (a, b) {
     return a + b;
 };
-console.log(add(1, 1));
 
 function subtract(a, b) {
     return a - b;
 };
-console.log(subtract(1, 1));
 
 function multiply(a, b) {
     return a * b;
-}
-console.log(multiply(1, 1));
+};
 
 function divide(a, b) {
     return a / b;
-}
-console.log(divide(10, 5));
+};
+
+// Variables that contain first number, math operator and second number
+let firstNumber;
+let operator;
+let secondNumber;
