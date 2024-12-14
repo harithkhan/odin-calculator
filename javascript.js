@@ -15,7 +15,7 @@ function divide(a, b) {
     return a / b;
 };
 
-// Variables that contain first number, math operator and second number
+// Variables that contain first number, math operator and second number for display
 let displayFirstNumber;
 let displayOperator;
 let displaySecondNumber;
