@@ -16,9 +16,9 @@ function divide(a, b) {
 };
 
 // Variables that contain first number, math operator and second number
-let firstNumber;
-let operator;
-let secondNumber;
+let displayFirstNumber;
+let displayOperator;
+let displaySecondNumber;
 
 // Function that calls operator functions on 2 numbers
 function operator(mathOperator, firstNum, secondNum) {
