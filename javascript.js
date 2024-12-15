@@ -153,4 +153,20 @@ function handleEqualsToClick() {
 }
 equalsTo.addEventListener("click", handleEqualsToClick);
 
+// Clear calculator feature
+function handleClearClick () {
+    valueA = 0;
+    valueB = 0;
+    mathOperator = undefined;
+    displayValue = 0;
+    display.textContent = 0;
+    console.log(`Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}`);
+};
+
+const clear = document.querySelector(".clear");
+clear.addEventListener("click", handleClearClick);
 
