@@ -89,7 +89,7 @@ const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
 
 function handleOperatorClick(opr) {
-    if (!isNaN(valueA)) {
+    if (!isNaN(valueA) && isNaN(valueB)) {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
         display.textContent = result;
