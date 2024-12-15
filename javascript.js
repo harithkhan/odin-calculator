@@ -155,8 +155,8 @@ equalsTo.addEventListener("click", handleEqualsToClick);
 
 // Clear calculator feature
 function handleClearClick () {
-    valueA = 0;
-    valueB = 0;
+    valueA = undefined;
+    valueB = undefined;
     mathOperator = undefined;
     displayValue = 0;
     display.textContent = 0;
