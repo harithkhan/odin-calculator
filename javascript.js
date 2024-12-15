@@ -97,28 +97,32 @@ function handleOperatorClick(opr) {
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
-
-    } else if (!isNaN(valueA) && !isNaN(valueB)) {
-        valueB = displayValue;
-        let result = operator(mathOperator, valueA, valueB);
-        display.textContent = result;
-        valueA = result;
-        valueB = 0;
-        mathOperator = opr;
-        displayValue = valueB;
+        console.log("Ping 1(!isNaN(valueA) && isNaN(valueB))");
 
     } else if (!isNaN(valueA) && valueB === 0) {
         valueB = displayValue
         let result = operator(mathOperator, valueA, valueB);
         display.textContent = result;
         valueA = result;
+        valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
+        console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
+
+    } else if (!isNaN(valueA) && !isNaN(valueB)) {
+        valueA = displayValue;
+        displayValue = 0;
+        mathOperator = opr;
+        console.log("Ping 3(!isNaN(valueA) && !isNaN(valueB))");
+
+    // If isNan(displayValue > 0)
+
 
     } else {
         valueA = displayValue;
         displayValue = 0;
         mathOperator = opr;
+        console.log("Ping 4, else");
         
     };
     console.log(`Values
@@ -144,6 +148,8 @@ function handleEqualsToClick() {
         let result = operator(mathOperator, valueA, valueB);
         display.textContent = result;
         displayValue = result;
+        valueA = undefined;
+        valueB = undefined;
     };
     console.log(`Values
         displayValue: ${displayValue} 
