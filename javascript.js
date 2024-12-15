@@ -97,10 +97,29 @@ function handleOperatorClick(opr) {
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
+
+    } else if (!isNaN(valueA) && !isNaN(valueB)) {
+        valueB = displayValue;
+        let result = operator(mathOperator, valueA, valueB);
+        display.textContent = result;
+        valueA = result;
+        valueB = 0;
+        mathOperator = opr;
+        displayValue = valueB;
+
+    } else if (!isNaN(valueA) && valueB === 0) {
+        valueB = displayValue
+        let result = operator(mathOperator, valueA, valueB);
+        display.textContent = result;
+        valueA = result;
+        mathOperator = opr;
+        displayValue = valueB;
+
     } else {
         valueA = displayValue;
         displayValue = 0;
         mathOperator = opr;
+        
     };
     console.log(`Values
         displayValue: ${displayValue} 
