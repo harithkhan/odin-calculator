@@ -16,9 +16,9 @@ function toDivide(a, b) {
 };
 
 // Variables that contain first number, math operator and second number for display
-let displayFirstNumber;
-let displayOperator;
-let displaySecondNumber;
+let valueA;
+let valueB;
+let mathOperator;
 
 // Function that calls calculator operator functions on 2 numbers
 function operator(mathOperator, firstNum, secondNum) {
@@ -44,8 +44,12 @@ function handleDigitClick(digit) {
         displayValue = displayValue * 10 + digit;
     }
     display.textContent = displayValue;
-    console.log(displayValue);
-}
+    console.log(`Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}`);
+};
 
 const zero = document.querySelector(".zero");
 zero.addEventListener("click", () => handleDigitClick(0));
@@ -79,18 +83,30 @@ nine.addEventListener("click", () => handleDigitClick(9));
 
 // Functions that handle operator clicks
 
-let valueA = 0;
-let valueB = 0;
-let mathOperator = "";
 const add = document.querySelector(".add");
 const subtract = document.querySelector(".subtract");
 const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
 
 function handleOperatorClick(opr) {
-    valueA = displayValue;
-    displayValue = 0;
-    mathOperator = opr;
+    if (!isNaN(valueA)) {
+        valueB = displayValue;
+        let result = operator(mathOperator, valueA, valueB);
+        display.textContent = result;
+        valueA = result;
+        valueB = 0;
+        mathOperator = opr;
+        displayValue = valueB;
+    } else {
+        valueA = displayValue;
+        displayValue = 0;
+        mathOperator = opr;
+    };
+    console.log(`Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}`);
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -106,6 +122,11 @@ function handleEqualsToClick() {
     let result = operator(mathOperator, valueA, valueB);
     display.textContent = result;
     displayValue = result;
+    console.log(`Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}`);
 }
 equalsTo.addEventListener("click", handleEqualsToClick);
 
