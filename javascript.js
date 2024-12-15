@@ -118,10 +118,14 @@ divide.addEventListener("click", () => handleOperatorClick("/"));
 
 const equalsTo = document.querySelector(".equals-to");
 function handleEqualsToClick() {
-    valueB = displayValue;
-    let result = operator(mathOperator, valueA, valueB);
-    display.textContent = result;
-    displayValue = result;
+    if (isNaN(valueA)) {
+        display.textContent = displayValue;
+    } else {
+        valueB = displayValue;
+        let result = operator(mathOperator, valueA, valueB);
+        display.textContent = result;
+        displayValue = result;
+    };
     console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
