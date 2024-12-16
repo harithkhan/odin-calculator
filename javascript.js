@@ -243,6 +243,28 @@ function handleEqualsToClick() {
         valueB = undefined;
         mathOperator = undefined;
 
+    } else if (!isNaN(valueA) && valueB === undefined && isChaining === true) {
+        valueB = valueA;
+        let result = operator(mathOperator, valueA, valueB);
+        let cleanResult = roundedResult(result);
+        display.textContent = cleanResult;
+        displayValue = cleanResult;
+        isResult = true;
+        operatorAssigned = false;
+        isChaining = false;
+        console.log(`Second value was not entered, calculation will execute with first value as second value
+            Calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}`);
+        valueA = undefined;
+        valueB = undefined;
+        mathOperator = undefined;
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
     } else {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
@@ -264,7 +286,6 @@ function handleEqualsToClick() {
             isResult: ${isResult}
             operatorAssigned: ${operatorAssigned}
             isChaining: ${isChaining}`);
-      
     };
 };
 
