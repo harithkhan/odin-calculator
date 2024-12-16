@@ -81,6 +81,11 @@ eight.addEventListener("click", () => handleDigitClick(8));
 const nine = document.querySelector(".nine");
 nine.addEventListener("click", () => handleDigitClick(9));
 
+// Function that rounds off results from math operators
+function roundedResult(value, decimal = 10) {
+    return Math.round(value * Math.pow(10, decimal)) / Math.pow(10, decimal);
+};
+
 // Functions that handle operator clicks
 
 const add = document.querySelector(".add");
