@@ -22,6 +22,10 @@ let mathOperator;
 
 // Miscellaneous variables that help calculator function
 let logCounter = 1; // Helps to index console logs
+let displayValue = 0; // Default value of display
+let isResult = false; // Placeholder to track whether equals-to clicked, enabling user to type digits fresh
+let operatorAssigned = false; // Placeholder to help enable chaining of operators
+let isChaining = false; // Placeholder to help enable chaining of operators
 
 // Function that calls calculator operator functions on 2 numbers
 function operator(mathOperator, firstNum, secondNum) {
@@ -39,8 +43,6 @@ function operator(mathOperator, firstNum, secondNum) {
 // Functions that populate display when digit buttons are clicked
 
 const display = document.querySelector(".display");
-let displayValue = 0;
-let isResult = false; // Placeholder to track whether equals-to clicked, enabling user to type digits fresh
 
 function handleDigitClick(digit) {
     if (displayValue === 0) {
@@ -135,8 +137,6 @@ const add = document.querySelector(".add");
 const subtract = document.querySelector(".subtract");
 const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
-let operatorAssigned = false; // Placeholder to help enable chaining of operators
-let isChaining = false; // Placeholder to help enable chaining of operators
 
 function handleOperatorClick(opr) {
     if (mathOperator === "/" && displayValue === 0) {
