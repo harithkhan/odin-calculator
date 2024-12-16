@@ -43,12 +43,21 @@ function handleDigitClick(digit) {
     if (displayValue === 0) {
         displayValue = digit;
         isResult = false;
+        isChaining = false; /// Ensures that operator chaining is negated after digits are clicked (refer to handleOperatorClick)
+        valueB = undefined; // Ensures that the correct condition is fulfilled in handleOperatorClick
+        console.log(`${digit} was clicked`)
     } else if (isResult === true) {
         displayValue = digit;
         isResult = false;
+        isChaining = false;
+        valueB = undefined;
+        console.log(`${digit} was clicked`)
     } else {
         displayValue = displayValue * 10 + digit;
         isResult = false;
+        isChaining = false;
+        valueB = undefined;
+        console.log(`${digit} was appended`);
     };
     display.textContent = displayValue;
     console.log(`Values
@@ -100,6 +109,8 @@ const add = document.querySelector(".add");
 const subtract = document.querySelector(".subtract");
 const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
+let operatorAssigned = false; // Placeholder to help enable chaining of operators
+let isChaining = false; // Placeholder to help enable chaining of operators
 
 function handleOperatorClick(opr) {
     if (mathOperator === "/" && displayValue === 0) {
@@ -111,13 +122,79 @@ function handleOperatorClick(opr) {
             valueA: ${valueA} 
             valueB: ${valueB}
             mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
         isResult = false;
+        operatorAssigned = false;
     
+    } else if (displayValue === 0 && valueA === undefined && valueB === undefined && mathOperator === undefined) {
+        handleClearClick();
+        console.log("Ping 1, There is nothing to operate on, operator that was clicked clears calculator");
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}`);
 
+    } else if (displayValue !== 0 && valueA === undefined && valueB === undefined && mathOperator === undefined && operatorAssigned === false && isChaining === false) {
+        valueA = displayValue;
+        displayValue = 0; // Ensures that digits clicked after operator click are displayed (refer to handleDigitClick)
+        mathOperator = opr;
+        isResult = false;
+        operatorAssigned = true;
+        isChaining = true;
+        console.log(`Ping 2, operator ${mathOperator} has been assigned`);
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}`);
+
+    } else if (!isNaN(valueA) && valueB === undefined && operatorAssigned === true && isChaining === false) {
+        valueB = displayValue;
+        let result = operator(mathOperator, valueA, valueB);
+        let cleanResult = roundedResult(result);
+        display.textContent = cleanResult;
+        valueA = cleanResult
+        valueB = undefined;
+        displayValue = 0;
+        mathOperator = opr;
+        isResult = true;
+        operatorAssigned = true;
+        isChaining = false;
+        console.log("Ping 3, chaining has occured, previous values were calculated and displayed first");
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}`);
+
+    } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true && isResult === false && isChaining === true) {
+        mathOperator = opr;
+        isResult = false;
+        operatorAssigned = true;
+        isChaining = true;
+        console.log(`Ping 4, chaining has occured without valueB being assigned, no values have been calculated, only operator is affected`);
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}`);
+    }
+    
+/*
     } else if (!isNaN(valueA) && isNaN(valueB)) { // Enables chaining of operators by assigning valueB
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
@@ -169,6 +246,7 @@ function handleOperatorClick(opr) {
             mathOperator: ${mathOperator}
             isResult: ${isResult}`);
     };
+*/
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -182,6 +260,7 @@ const equalsTo = document.querySelector(".equals-to");
 function handleEqualsToClick() {
     if (isNaN(valueA)) {
         display.textContent = displayValue;
+        console.log("There is nothing to operator on, nothing happens.")
         console.log(`Values
             displayValue: ${displayValue} 
             valueA: ${valueA} 
@@ -192,7 +271,10 @@ function handleEqualsToClick() {
     } else if (mathOperator === "/" && displayValue === 0) {
         display.textContent = "you can't break me";
         displayValue = 0;
+        valueB = undefined;
         isResult = true;
+        operatorAssigned = false;
+        isChaining = false;
         console.log(`Values
             calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
             displayValue: ${displayValue} 
@@ -211,16 +293,19 @@ function handleEqualsToClick() {
         display.textContent = cleanResult;
         displayValue = cleanResult;
         isResult = true;
+        operatorAssigned = false;
+        isChaining = false;
+        console.log(`Calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}`);
+        valueA = undefined;
+        valueB = undefined;
+        mathOperator = undefined;
         console.log(`Values
-            calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
             displayValue: ${displayValue} 
             valueA: ${valueA} 
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}`);
-        valueA = undefined;
-        valueB = undefined;
-        mathOperator = undefined;
+      
     };
 };
 
@@ -234,6 +319,9 @@ function handleClearClick () {
     displayValue = 0;
     display.textContent = 0;
     isResult = false;
+    operatorAssigned = false;
+    isChaining = false;
+    console.log("Calculator was cleared")
     console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
