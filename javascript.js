@@ -147,6 +147,14 @@ const equalsTo = document.querySelector(".equals-to");
 function handleEqualsToClick() {
     if (isNaN(valueA)) {
         display.textContent = displayValue;
+
+    } else if (mathOperator === "/" && displayValue === 0) {
+        display.textContent = "you can't break me";
+        displayValue = 0;
+        valueA = undefined;
+        valueB = undefined;
+        mathOperator = undefined;
+
     } else {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
