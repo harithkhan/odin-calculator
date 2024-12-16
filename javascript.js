@@ -37,18 +37,26 @@ function operator(mathOperator, firstNum, secondNum) {
 
 const display = document.querySelector(".display");
 let displayValue = 0;
+let isResult = false; // Placeholder to track whether equals-to clicked, enabling user to type digits fresh
+
 function handleDigitClick(digit) {
     if (displayValue === 0) {
         displayValue = digit;
+        isResult = false;
+    } else if (isResult === true) {
+        displayValue = digit;
+        isResult = false;
     } else {
         displayValue = displayValue * 10 + digit;
-    }
+        isResult = false;
+    };
     display.textContent = displayValue;
     console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
         valueB: ${valueB}
-        mathOperator: ${mathOperator}`);
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}`);
 };
 
 const zero = document.querySelector(".zero");
@@ -100,6 +108,7 @@ function handleOperatorClick(opr) {
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
+        isResult = false;
     
 
     } else if (!isNaN(valueA) && isNaN(valueB)) {
@@ -111,6 +120,7 @@ function handleOperatorClick(opr) {
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
+        isResult = false;
         console.log("Ping 1(!isNaN(valueA) && isNaN(valueB))");
 
     } else if (!isNaN(valueA) && valueB === 0) {
@@ -122,12 +132,14 @@ function handleOperatorClick(opr) {
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
+        isResult = false;
         console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
 
     } else {
         valueA = displayValue;
         displayValue = 0;
         mathOperator = opr;
+        isResult = false;
         console.log("Ping 3, else");
         
     };
@@ -135,7 +147,8 @@ function handleOperatorClick(opr) {
         displayValue: ${displayValue} 
         valueA: ${valueA} 
         valueB: ${valueB}
-        mathOperator: ${mathOperator}`);
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}`);
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -156,6 +169,7 @@ function handleEqualsToClick() {
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
+        isResult = true;
 
     } else {
         valueB = displayValue;
@@ -166,12 +180,14 @@ function handleEqualsToClick() {
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
+        isResult = true;
     };
     console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
         valueB: ${valueB}
-        mathOperator: ${mathOperator}`);
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}`);
 }
 equalsTo.addEventListener("click", handleEqualsToClick);
 
@@ -182,11 +198,13 @@ function handleClearClick () {
     mathOperator = undefined;
     displayValue = 0;
     display.textContent = 0;
+    isResult = false;
     console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
         valueB: ${valueB}
-        mathOperator: ${mathOperator}`);
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}`);
 };
 
 const clear = document.querySelector(".clear");
