@@ -173,7 +173,9 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
         logCounter++;
 
-    } else if (displayValue !== 0 && valueA === undefined && valueB === undefined && mathOperator === undefined && operatorAssigned === false && isChaining === false) {
+    } else if (displayValue !== 0 && valueA === undefined && valueB === undefined && mathOperator === undefined 
+        && operatorAssigned === false && isChaining === false) {
+
         valueA = displayValue;
         displayValue = 0; // Ensures that digits clicked after operator clicks are displayed (refer to handleDigitClick)
         mathOperator = opr;
@@ -215,7 +217,9 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
         logCounter++;
 
-    } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true && isResult === false && isChaining === true) {
+    } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true 
+    && isResult === false && isChaining === true) {
+        
         mathOperator = opr;
         isResult = false;
         operatorAssigned = true;
