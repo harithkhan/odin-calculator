@@ -124,17 +124,11 @@ function handleOperatorClick(opr) {
         displayValue = valueB;
         console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
 
-    } else if (!isNaN(valueA) && !isNaN(valueB)) {
-        valueA = displayValue;
-        displayValue = 0;
-        mathOperator = opr;
-        console.log("Ping 3(!isNaN(valueA) && !isNaN(valueB))");
-
     } else {
         valueA = displayValue;
         displayValue = 0;
         mathOperator = opr;
-        console.log("Ping 4, else");
+        console.log("Ping 3, else");
         
     };
     console.log(`Values
