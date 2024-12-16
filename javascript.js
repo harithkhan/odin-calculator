@@ -97,8 +97,9 @@ function handleOperatorClick(opr) {
     if (!isNaN(valueA) && isNaN(valueB)) {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
-        display.textContent = result;
-        valueA = result;
+        let cleanResult = roundedResult(result);
+        display.textContent = cleanResult;
+        valueA = cleanResult;
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
@@ -107,8 +108,9 @@ function handleOperatorClick(opr) {
     } else if (!isNaN(valueA) && valueB === 0) {
         valueB = displayValue
         let result = operator(mathOperator, valueA, valueB);
-        display.textContent = result;
-        valueA = result;
+        let cleanResult = roundedResult(result);
+        display.textContent = cleanResult;
+        valueA = cleanResult;
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
@@ -119,9 +121,6 @@ function handleOperatorClick(opr) {
         displayValue = 0;
         mathOperator = opr;
         console.log("Ping 3(!isNaN(valueA) && !isNaN(valueB))");
-
-    // If isNan(displayValue > 0)
-
 
     } else {
         valueA = displayValue;
@@ -151,8 +150,9 @@ function handleEqualsToClick() {
     } else {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
-        display.textContent = result;
-        displayValue = result;
+        let cleanResult = roundedResult(result);
+        display.textContent = cleanResult;
+        displayValue = cleanResult;
         valueA = undefined;
         valueB = undefined;
     };
