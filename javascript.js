@@ -165,6 +165,7 @@ function handleEqualsToClick() {
         displayValue = cleanResult;
         valueA = undefined;
         valueB = undefined;
+        mathOperator = undefined;
     };
     console.log(`Values
         displayValue: ${displayValue} 
