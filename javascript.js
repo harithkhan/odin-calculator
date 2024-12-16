@@ -94,7 +94,15 @@ const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
 
 function handleOperatorClick(opr) {
-    if (!isNaN(valueA) && isNaN(valueB)) {
+    if (mathOperator === "/" && displayValue === 0) {
+        display.textContent = "you can't break me";
+        displayValue = 0;
+        valueA = undefined;
+        valueB = undefined;
+        mathOperator = undefined;
+    
+
+    } else if (!isNaN(valueA) && isNaN(valueB)) {
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
