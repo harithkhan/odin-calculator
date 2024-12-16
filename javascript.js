@@ -105,6 +105,13 @@ function handleOperatorClick(opr) {
     if (mathOperator === "/" && displayValue === 0) {
         display.textContent = "you can't break me";
         displayValue = 0;
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
@@ -116,24 +123,38 @@ function handleOperatorClick(opr) {
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
+        console.log("Ping 1(!isNaN(valueA) && isNaN(valueB))");
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
         valueA = cleanResult;
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
         isResult = false;
-        console.log("Ping 1(!isNaN(valueA) && isNaN(valueB))");
 
     } else if (!isNaN(valueA) && valueB === 0) {
         valueB = displayValue
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
+        console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
         valueA = cleanResult;
         valueB = 0;
         mathOperator = opr;
         displayValue = valueB;
         isResult = false;
-        console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
 
     } else {
         valueA = displayValue;
@@ -141,14 +162,13 @@ function handleOperatorClick(opr) {
         mathOperator = opr;
         isResult = false;
         console.log("Ping 3, else");
-        
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
     };
-    console.log(`Values
-        displayValue: ${displayValue} 
-        valueA: ${valueA} 
-        valueB: ${valueB}
-        mathOperator: ${mathOperator}
-        isResult: ${isResult}`);
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -162,10 +182,23 @@ const equalsTo = document.querySelector(".equals-to");
 function handleEqualsToClick() {
     if (isNaN(valueA)) {
         display.textContent = displayValue;
+        console.log(`Values
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
 
     } else if (mathOperator === "/" && displayValue === 0) {
         display.textContent = "you can't break me";
         displayValue = 0;
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
@@ -177,18 +210,20 @@ function handleEqualsToClick() {
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
         displayValue = cleanResult;
+        console.log(`Values
+            calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
+            displayValue: ${displayValue} 
+            valueA: ${valueA} 
+            valueB: ${valueB}
+            mathOperator: ${mathOperator}
+            isResult: ${isResult}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
         isResult = true;
     };
-    console.log(`Values
-        displayValue: ${displayValue} 
-        valueA: ${valueA} 
-        valueB: ${valueB}
-        mathOperator: ${mathOperator}
-        isResult: ${isResult}`);
-}
+};
+
 equalsTo.addEventListener("click", handleEqualsToClick);
 
 // Clear calculator feature
