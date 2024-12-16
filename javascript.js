@@ -65,7 +65,9 @@ function handleDigitClick(digit) {
         valueA: ${valueA} 
         valueB: ${valueB}
         mathOperator: ${mathOperator}
-        isResult: ${isResult}`);
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
 };
 
 const zero = document.querySelector(".zero");
@@ -123,7 +125,8 @@ function handleOperatorClick(opr) {
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}
-            operatorAssigned: ${operatorAssigned}`);
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
@@ -139,11 +142,12 @@ function handleOperatorClick(opr) {
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}
-            operatorAssigned: ${operatorAssigned}`);
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
 
     } else if (displayValue !== 0 && valueA === undefined && valueB === undefined && mathOperator === undefined && operatorAssigned === false && isChaining === false) {
         valueA = displayValue;
-        displayValue = 0; // Ensures that digits clicked after operator click are displayed (refer to handleDigitClick)
+        displayValue = 0; // Ensures that digits clicked after operator clicks are displayed (refer to handleDigitClick)
         mathOperator = opr;
         isResult = false;
         operatorAssigned = true;
@@ -155,7 +159,8 @@ function handleOperatorClick(opr) {
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}
-            operatorAssigned: ${operatorAssigned}`);
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
 
     } else if (!isNaN(valueA) && valueB === undefined && operatorAssigned === true && isChaining === false) {
         valueB = displayValue;
@@ -177,7 +182,8 @@ function handleOperatorClick(opr) {
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}
-            operatorAssigned: ${operatorAssigned}`);
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
 
     } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true && isResult === false && isChaining === true) {
         mathOperator = opr;
@@ -191,62 +197,10 @@ function handleOperatorClick(opr) {
             valueB: ${valueB}
             mathOperator: ${mathOperator}
             isResult: ${isResult}
-            operatorAssigned: ${operatorAssigned}`);
-    }
-    
-/*
-    } else if (!isNaN(valueA) && isNaN(valueB)) { // Enables chaining of operators by assigning valueB
-        valueB = displayValue;
-        let result = operator(mathOperator, valueA, valueB);
-        let cleanResult = roundedResult(result);
-        display.textContent = cleanResult;
-        console.log("Ping 1(!isNaN(valueA) && isNaN(valueB))");
-        console.log(`Values
-            calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}
-            displayValue: ${displayValue} 
-            valueA: ${valueA} 
-            valueB: ${valueB}
-            mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
-        valueA = cleanResult;
-        valueB = 0; // Enables chainig of operators - see the next else if statement
-        mathOperator = opr;
-        displayValue = valueB;
-        isResult = false;
-
-    } else if (!isNaN(valueA) && valueB === 0) {
-        valueB = displayValue
-        let result = operator(mathOperator, valueA, valueB);
-        let cleanResult = roundedResult(result);
-        display.textContent = cleanResult;
-        console.log("Ping 2(!isNaN(valueA) && valueB === 0)");
-        console.log(`Values
-            calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}
-            displayValue: ${displayValue} 
-            valueA: ${valueA} 
-            valueB: ${valueB}
-            mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
-        valueA = cleanResult;
-        valueB = 0;
-        mathOperator = opr;
-        displayValue = valueB;
-        isResult = false;
-
-    } else {
-        valueA = displayValue;
-        displayValue = 0;
-        mathOperator = opr;
-        isResult = false;
-        console.log("Ping 3, else");
-        console.log(`Values
-            displayValue: ${displayValue} 
-            valueA: ${valueA} 
-            valueB: ${valueB}
-            mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
     };
-*/
+    
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -266,7 +220,9 @@ function handleEqualsToClick() {
             valueA: ${valueA} 
             valueB: ${valueB}
             mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
 
     } else if (mathOperator === "/" && displayValue === 0) {
         display.textContent = "you can't break me";
@@ -276,12 +232,13 @@ function handleEqualsToClick() {
         operatorAssigned = false;
         isChaining = false;
         console.log(`Values
-            calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
             displayValue: ${displayValue} 
             valueA: ${valueA} 
             valueB: ${valueB}
             mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
@@ -304,7 +261,9 @@ function handleEqualsToClick() {
             valueA: ${valueA} 
             valueB: ${valueB}
             mathOperator: ${mathOperator}
-            isResult: ${isResult}`);
+            isResult: ${isResult}
+            operatorAssigned: ${operatorAssigned}
+            isChaining: ${isChaining}`);
       
     };
 };
@@ -327,7 +286,9 @@ function handleClearClick () {
         valueA: ${valueA} 
         valueB: ${valueB}
         mathOperator: ${mathOperator}
-        isResult: ${isResult}`);
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
 };
 
 const clear = document.querySelector(".clear");
