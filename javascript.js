@@ -118,7 +118,7 @@ function handleOperatorClick(opr) {
         isResult = false;
     
 
-    } else if (!isNaN(valueA) && isNaN(valueB)) {
+    } else if (!isNaN(valueA) && isNaN(valueB)) { // Enables chaining of operators by assigning valueB
         valueB = displayValue;
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
@@ -132,7 +132,7 @@ function handleOperatorClick(opr) {
             mathOperator: ${mathOperator}
             isResult: ${isResult}`);
         valueA = cleanResult;
-        valueB = 0;
+        valueB = 0; // Enables chainig of operators - see the next else if statement
         mathOperator = opr;
         displayValue = valueB;
         isResult = false;
