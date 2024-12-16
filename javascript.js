@@ -192,6 +192,7 @@ function handleEqualsToClick() {
     } else if (mathOperator === "/" && displayValue === 0) {
         display.textContent = "you can't break me";
         displayValue = 0;
+        isResult = true;
         console.log(`Values
             calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
             displayValue: ${displayValue} 
@@ -202,7 +203,6 @@ function handleEqualsToClick() {
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
-        isResult = true;
 
     } else {
         valueB = displayValue;
@@ -210,6 +210,7 @@ function handleEqualsToClick() {
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
         displayValue = cleanResult;
+        isResult = true;
         console.log(`Values
             calculation: ${valueA} ${mathOperator} ${valueB} = ${displayValue}
             displayValue: ${displayValue} 
@@ -220,7 +221,6 @@ function handleEqualsToClick() {
         valueA = undefined;
         valueB = undefined;
         mathOperator = undefined;
-        isResult = true;
     };
 };
 
