@@ -152,6 +152,63 @@ eight.addEventListener("click", () => handleDigitClick(8));
 const nine = document.querySelector(".nine");
 nine.addEventListener("click", () => handleDigitClick(9));
 
+// Function that toggles the negative value of display
+
+const toggleNegative = document.querySelector(".toggle-negative");
+
+function handleToggleNegative() {
+    if (isChaining) {
+        console.log(`${logCounter}: Toggle-negative was clicked while chaining, nothing happened
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+
+    } else if (isResult) {
+        displayValue = displayValue * (-1);
+        display.textContent = displayValue;
+        console.log(`${logCounter}: Toggle-negative was clicked, calculator operates on negative of result
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+
+    } else if (displayValue === 0 && decimalDisplay.toString().includes(".")) { // Handles when 0.x is entered
+        console.log(`${logCounter}: Toggle-negative was clicked while decimal number not properly assigned, nothing happened
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+
+    } else if (displayValue !== 0) { // Handles toggle negative when there is a display value
+        displayValue = displayValue * -1;
+        display.textContent = displayValue;
+        console.log(`${logCounter}: Toggle-negative was clicked, calculator operates on negative of display value
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+    };
+};
+
+toggleNegative.addEventListener("click", handleToggleNegative)
+
 // Function that rounds off results from math operators
 function roundedResult(value, decimal = 10) {
     return Math.round(value * Math.pow(10, decimal)) / Math.pow(10, decimal);
