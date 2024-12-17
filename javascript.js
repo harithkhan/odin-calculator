@@ -395,6 +395,24 @@ function handleDecimalClick() {
         isChaining: ${isChaining}`);
         logCounter++;
 
+    } else if (isResult) {
+        decimalDisplay = displayValue.toString() + ".";
+        display.textContent = decimalDisplay;
+        isResult = false;
+        isChaining = false; 
+        valueB = undefined;
+        console.log(`${logCounter}: Decimal button clicked after a result is reached, new value 0.x created
+        Values
+        display shows: ${decimalDisplay}    
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+    
     } else if (decimalDisplay.toString().includes(".")) {
         // does nothing when display is already a float, decimal button negated
         console.log(`${logCounter}: Display already contains decimal point, nothing happened as a result
