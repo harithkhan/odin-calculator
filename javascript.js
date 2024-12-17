@@ -54,6 +54,7 @@ function handleDigitClick(digit) {
         isResult = false;
         isChaining = false; /// Ensures that operator chaining is negated after digits are clicked (refer to handleOperatorClick)
         valueB = undefined; // Ensures that the correct condition is fulfilled in handleOperatorClick
+        decimalDisplay = ""; // Resets decimal display
         console.log(`${logCounter}: ${digit} was clicked and appended as decimal value
         Values
         displayValue: ${displayValue} 
@@ -70,6 +71,7 @@ function handleDigitClick(digit) {
         isResult = false;
         isChaining = false; 
         valueB = undefined; 
+        decimalDisplay = "";
         console.log(`${logCounter}: ${digit} was clicked
         Values
         displayValue: ${displayValue} 
@@ -86,6 +88,7 @@ function handleDigitClick(digit) {
         isResult = false;
         isChaining = false;
         valueB = undefined;
+        decimalDisplay = "";
         console.log(`${logCounter}: ${digit} was clicked
         Values
         displayValue: ${displayValue} 
@@ -104,6 +107,7 @@ function handleDigitClick(digit) {
         isResult = false;
         isChaining = false;
         valueB = undefined;
+        decimalDisplay = ""; // Resets decimal display
         console.log(`${logCounter}: ${digit} was appended
         Values
         displayValue: ${displayValue} 
@@ -393,8 +397,8 @@ function handleDecimalClick() {
         logCounter++;
 
     } else if (decimalDisplay.toString().includes(".")) {
-        // does nothing when displayValue is already a float, decimal button negated
-        console.log(`${logCounter}: DisplayValue is already contains decimal point, nothing happened as a result
+        // does nothing when display is already a float, decimal button negated
+        console.log(`${logCounter}: Display already contains decimal point, nothing happened as a result
         Values
         display shows: ${decimalDisplay}    
         displayValue: ${displayValue} 
@@ -424,7 +428,7 @@ function handleDecimalClick() {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`);
         logCounter++;
-    }
+    };
 };
 
 decimal.addEventListener("click", handleDecimalClick);
