@@ -48,7 +48,7 @@ display.textContent = displayValue; // Default the display to 0
 
 function handleDigitClick(digit) {
     if (displayValue && displayValue.toString().length >= 15) {
-        console.log(`${logCounter}: ${digit} was clicked but not appended. Only 14-15 digits may be appended
+        console.log(`${logCounter}: ${digit} was clicked but not appended. Only 15-16 digits may be appended
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -462,7 +462,20 @@ equalsTo.addEventListener("click", handleEqualsToClick);
 const decimal = document.querySelector(".decimal");
 
 function handleDecimalClick() {
-    if (displayValue === 0) {
+    if (displayValue && displayValue.toString().length >= 15) {
+        console.log(`${logCounter}: Decimal cannot be appended if display length is 15 or greater
+        Values
+        display shows: ${decimalDisplay}    
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+
+    } else if (displayValue === 0) {
         decimalDisplay = displayValue.toString() + ".";
         display.textContent = decimalDisplay;
         isResult = false;
