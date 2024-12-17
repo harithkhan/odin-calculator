@@ -51,6 +51,9 @@ function handleDigitClick(digit) {
         decimalDisplay += digit;
         decimalDisplay = parseFloat(decimalDisplay);
         displayValue = decimalDisplay;
+        isResult = false;
+        isChaining = false; /// Ensures that operator chaining is negated after digits are clicked (refer to handleOperatorClick)
+        valueB = undefined; // Ensures that the correct condition is fulfilled in handleOperatorClick
         console.log(`${logCounter}: ${digit} was clicked and appended as decimal value
         Values
         displayValue: ${displayValue} 
@@ -65,8 +68,8 @@ function handleDigitClick(digit) {
     } else if (displayValue === 0) {
         displayValue = digit;
         isResult = false;
-        isChaining = false; /// Ensures that operator chaining is negated after digits are clicked (refer to handleOperatorClick)
-        valueB = undefined; // Ensures that the correct condition is fulfilled in handleOperatorClick
+        isChaining = false; 
+        valueB = undefined; 
         console.log(`${logCounter}: ${digit} was clicked
         Values
         displayValue: ${displayValue} 
@@ -374,6 +377,9 @@ function handleDecimalClick() {
     if (displayValue === 0) {
         decimalDisplay = displayValue.toString() + ".";
         display.textContent = decimalDisplay;
+        isResult = false;
+        isChaining = false; 
+        valueB = undefined;
         console.log(`${logCounter}: DisplayValue is 0, 0.x decimal was created
         Values
         display shows: ${decimalDisplay}    
@@ -403,6 +409,9 @@ function handleDecimalClick() {
     } else if (!displayValue.toString().includes(".")) {
         decimalDisplay = displayValue.toString() + ".";
         display.textContent = decimalDisplay;
+        isResult = false;
+        isChaining = false; 
+        valueB = undefined;
         displayValue = undefined; // Useful in case operator clicked prematurely
         console.log(`${logCounter}: Decimal point was appended
         Values
