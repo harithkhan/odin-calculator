@@ -216,10 +216,10 @@ toggleNegative.addEventListener("click", handleToggleNegative);
 function toToggleNegative() { // To remove display of toggle-negative button when it can't be used
     if (isChaining || (isNaN(displayValue) && decimalDisplay.toString().includes(".")) 
         || (isResult && operatorAssigned)) {
-        toggleNegative.textContent = "";
+        toggleNegative.style.color = "#0a2103";
         
     } else {
-        toggleNegative.textContent = "(+/-)";
+        toggleNegative.style.color = "white";
     }
 };
 
@@ -652,6 +652,6 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "/") handleOperatorClick("/");
     if (event.key === "=" || event.key === "Enter") handleEqualsToClick();
     if (event.key === ".") handleDecimalClick();
-    if (event.key === " ") handleClearClick(); 
+    if (event.key === "Backspace" && event.shiftKey) handleClearClick(); 
     if (event.key === "Backspace") toHandleDelete(); 
 });
