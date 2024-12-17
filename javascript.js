@@ -211,7 +211,7 @@ function handleToggleNegative() {
     toToggleNegative();
 };
 
-toggleNegative.addEventListener("click", handleToggleNegative)
+toggleNegative.addEventListener("click", handleToggleNegative);
 
 function toToggleNegative() { // To remove display of toggle-negative button when it can't be used
     if (isChaining || (isNaN(displayValue) && decimalDisplay.toString().includes(".")) 
@@ -631,3 +631,27 @@ function toHandleDelete() {
 
 const toDelete = document.querySelector(".delete");
 toDelete.addEventListener("click", toHandleDelete);
+
+// Keyboard Support
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "0") handleDigitClick(0);
+    if (event.key === "1") handleDigitClick(1);
+    if (event.key === "2") handleDigitClick(2);
+    if (event.key === "3") handleDigitClick(3);
+    if (event.key === "4") handleDigitClick(4);
+    if (event.key === "5") handleDigitClick(5);
+    if (event.key === "6") handleDigitClick(6);
+    if (event.key === "7") handleDigitClick(7);
+    if (event.key === "8") handleDigitClick(8);
+    if (event.key === "9") handleDigitClick(9);
+    if (event.key === "n" || event.key === "N") handleToggleNegative();
+    if (event.key === "+") handleOperatorClick("+");
+    if (event.key === "-") handleOperatorClick("-");
+    if (event.key === "*") handleOperatorClick("*");
+    if (event.key === "/") handleOperatorClick("/");
+    if (event.key === "=" || event.key === "Enter") handleEqualsToClick();
+    if (event.key === ".") handleDecimalClick();
+    if (event.key === " ") handleClearClick(); 
+    if (event.key === "Backspace") toHandleDelete(); 
+});
