@@ -28,3 +28,12 @@
     align-items: center;
     justify-content: center;
 }
+
+.clear,
+.delete {
+    font-size: 10px;
+}
+
+.toggle-negative {
+    font-size: 10px;
+}
