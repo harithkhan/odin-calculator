@@ -199,8 +199,7 @@ function handleOperatorClick(opr) {
         logCounter++;
 
     } else if (displayValue === 0 && valueA === undefined && valueB === undefined && mathOperator === undefined) {
-        handleClearClick();
-        console.log(`${logCounter}: Ping 2, There is nothing to operate on, operator that was clicked clears calculator
+        console.log(`${logCounter}: Ping 2, There is nothing to operate on
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
