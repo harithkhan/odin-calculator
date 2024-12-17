@@ -467,6 +467,7 @@ function handleDecimalClick() {
 
     } else if (isResult) {
         decimalDisplay = "0.";
+        displayValue = 0;
         display.textContent = decimalDisplay;
         isResult = false;
         isChaining = false; 
