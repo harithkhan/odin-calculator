@@ -120,6 +120,7 @@ function handleDigitClick(digit) {
         logCounter++;
     };
     display.textContent = displayValue;
+    toToggleNegative();
 };
 
 const zero = document.querySelector(".zero");
@@ -152,7 +153,7 @@ eight.addEventListener("click", () => handleDigitClick(8));
 const nine = document.querySelector(".nine");
 nine.addEventListener("click", () => handleDigitClick(9));
 
-// Function that toggles the negative value of display
+// Functions that toggles the negative value of display
 
 const toggleNegative = document.querySelector(".toggle-negative");
 
@@ -205,9 +206,19 @@ function handleToggleNegative() {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`)
     };
+    toToggleNegative();
 };
 
 toggleNegative.addEventListener("click", handleToggleNegative)
+
+function toToggleNegative() { // To remove display of toggle-negative button when it can't be used
+    if (displayValue !== 0 || isResult) {
+        toggleNegative.textContent = "(+/-)";
+
+    } else if (isChaining || (displayValue === 0 && decimalDisplay.toString().includes("."))) {
+        toggleNegative.textContent = "";
+    };
+};
 
 // Function that rounds off results from math operators
 function roundedResult(value, decimal = 10) {
@@ -329,6 +340,7 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
         logCounter++;
     };
+    toToggleNegative();
 };
 
 add.addEventListener("click", () => handleOperatorClick("+"));
@@ -425,6 +437,7 @@ function handleEqualsToClick() {
             operatorAssigned: ${operatorAssigned}
             isChaining: ${isChaining}`);
     };
+    toToggleNegative();
 };
 
 equalsTo.addEventListener("click", handleEqualsToClick);
@@ -503,6 +516,7 @@ function handleDecimalClick() {
         isChaining: ${isChaining}`);
         logCounter++;
     };
+    toToggleNegative();
 };
 
 decimal.addEventListener("click", handleDecimalClick);
@@ -528,6 +542,7 @@ function handleClearClick () {
     operatorAssigned: ${operatorAssigned}
     isChaining: ${isChaining}`);
     logCounter++;
+    toToggleNegative();
 };
 
 const clear = document.querySelector(".clear");
