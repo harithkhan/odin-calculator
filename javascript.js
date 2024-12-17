@@ -466,7 +466,7 @@ function handleDecimalClick() {
         logCounter++;
 
     } else if (isResult) {
-        decimalDisplay = displayValue.toString() + ".";
+        decimalDisplay = "0.";
         display.textContent = decimalDisplay;
         isResult = false;
         isChaining = false; 
