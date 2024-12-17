@@ -457,7 +457,7 @@ function handleDecimalClick() {
         isChaining = false; 
         valueB = undefined;
         displayValue = undefined;
-        console.log(`${logCounter}: DisplayValue is undefined, 0.x decimal was created
+        console.log(`${logCounter}: DisplayValue is undefined, 0. decimal was created
         Values
         display shows: ${decimalDisplay}    
         displayValue: ${displayValue} 
@@ -488,7 +488,7 @@ function handleDecimalClick() {
         isChaining: ${isChaining}`);
         logCounter++;
     
-    } else if (decimalDisplay.toString().includes(".")) {
+    } else if (decimalDisplay.toString().includes(".") || displayValue.toString().includes(".")) {
         // does nothing when display is already a float, decimal button negated
         console.log(`${logCounter}: Display already contains decimal point, nothing happened as a result
         Values
@@ -553,3 +553,81 @@ function handleClearClick () {
 const clear = document.querySelector(".clear");
 clear.addEventListener("click", handleClearClick);
 
+// Delete feature
+
+function toHandleDelete() {
+    if (isResult || isChaining || displayValue === 0) { // Clears calculator if result reached either using = or reached in process of chaining
+        valueA = undefined;
+        valueB = undefined;
+        mathOperator = undefined;
+        displayValue = 0;
+        display.textContent = 0;
+        isResult = false;
+        operatorAssigned = false;
+        isChaining = false;
+        decimalDisplay = ""; 
+        console.log(`${logCounter}: Delete was clicked when display is 0, when result reached, or when chaining operators, calculator cleared
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+        logCounter++;
+
+    } else if (isNaN(displayValue)) { // Helps delete if x. is displayed
+        let deletedDisplay = decimalDisplay.slice(0, -1);
+        displayValue = parseFloat(deletedDisplay);
+        display.textContent = displayValue;
+        decimalDisplay = "";
+        isResult = false;
+        console.log(`${logCounter}: Delete was clicked, last digit or decimal was deleted
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+        logCounter++;
+
+    } else if (displayValue.toString().length === 1) {
+        displayValue = 0;
+        display.textContent = displayValue;
+        decimalDisplay = "";
+        isResult = false;
+        console.log(`${logCounter}: Delete was clicked, digit was deleted
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+        logCounter++;
+
+    } else {
+        let deletedDisplay = displayValue.toString().slice(0, -1);
+        displayValue = parseFloat(deletedDisplay);
+        display.textContent = displayValue;
+        isResult = false;
+        console.log(`${logCounter}: Delete was clicked, last digit or decimal was deleted
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`)
+        logCounter++;
+    }
+    toToggleNegative();
+};
+
+const toDelete = document.querySelector(".delete");
+toDelete.addEventListener("click", toHandleDelete);
