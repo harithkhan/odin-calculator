@@ -172,6 +172,7 @@ function handleToggleNegative() {
     } else if (isResult) {
         displayValue = displayValue * (-1);
         display.textContent = displayValue;
+        isResult = false;
         console.log(`${logCounter}: Toggle-negative was clicked, calculator operates on negative of result
         Values
         displayValue: ${displayValue} 
@@ -196,6 +197,7 @@ function handleToggleNegative() {
     } else if (!isNaN(displayValue)) { // Handles toggle negative when there is a display value
         displayValue = displayValue * -1;
         display.textContent = displayValue;
+        isResult = false;
         console.log(`${logCounter}: Toggle-negative was clicked, calculator operates on negative of display value
         Values
         displayValue: ${displayValue} 
