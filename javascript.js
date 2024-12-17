@@ -47,7 +47,7 @@ const display = document.querySelector(".display");
 display.textContent = displayValue; // Default the display to 0
 
 function handleDigitClick(digit) {
-    if (typeof decimalDisplay === "string") {
+    if (decimalDisplay.toString().includes(".")) {
         decimalDisplay += digit;
         decimalDisplay = parseFloat(decimalDisplay);
         displayValue = decimalDisplay;
