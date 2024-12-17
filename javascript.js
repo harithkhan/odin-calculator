@@ -430,6 +430,7 @@ function handleClearClick () {
     isResult = false;
     operatorAssigned = false;
     isChaining = false;
+    decimalDisplay = "";
     console.log(`${logCounter}: Calculator was cleared
     Values
     displayValue: ${displayValue} 
