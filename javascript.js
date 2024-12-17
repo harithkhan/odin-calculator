@@ -237,7 +237,7 @@ const divide = document.querySelector(".divide");
 
 function handleOperatorClick(opr) {
     if (mathOperator === "/" && displayValue === 0 && isChaining === false) {
-        display.textContent = "you can't break me";
+        display.textContent = "Finland";
         displayValue = 0;
         console.log(`${logCounter}: Tried to divide by 0
         calculation: ${valueA} ${mathOperator} 0 = ${display.textContent}`);
@@ -368,7 +368,7 @@ function handleEqualsToClick() {
         logCounter++;
 
     } else if (mathOperator === "/" && displayValue === 0) {
-        display.textContent = "you can't break me";
+        display.textContent = "Finland";
         displayValue = 0;
         valueB = undefined;
         isResult = true;
