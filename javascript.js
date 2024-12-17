@@ -183,7 +183,7 @@ function handleToggleNegative() {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`)
 
-    } else if (displayValue === 0 && decimalDisplay.toString().includes(".")) { // Handles when 0.x is entered
+    } else if (isNaN(displayValue) && decimalDisplay.toString().includes(".")) { // Handles when x.0 is entered
         console.log(`${logCounter}: Toggle-negative was clicked while decimal number not properly assigned, nothing happened
         Values
         displayValue: ${displayValue} 
