@@ -26,6 +26,7 @@ let displayValue = 0; // Default value of display
 let isResult = false; // Placeholder to track whether equals-to clicked, enabling user to type digits fresh
 let operatorAssigned = false; // Placeholder to help enable chaining of operators
 let isChaining = false; // Placeholder to help enable chaining of operators
+let decimalDisplay = ""; // Placeholder to turn displayValue into string for decimal appending
 
 // Function that calls calculator operator functions on 2 numbers
 function operator(mathOperator, firstNum, secondNum) {
@@ -43,9 +44,25 @@ function operator(mathOperator, firstNum, secondNum) {
 // Functions that populate display when digit buttons are clicked
 
 const display = document.querySelector(".display");
+display.textContent = displayValue; // Default the display to 0
 
 function handleDigitClick(digit) {
-    if (displayValue === 0) {
+    if (typeof decimalDisplay === "string") {
+        decimalDisplay += digit;
+        decimalDisplay = parseFloat(decimalDisplay);
+        displayValue = decimalDisplay;
+        console.log(`${logCounter}: ${digit} was clicked and appended as decimal value
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+    
+    } else if (displayValue === 0) {
         displayValue = digit;
         isResult = false;
         isChaining = false; /// Ensures that operator chaining is negated after digits are clicked (refer to handleOperatorClick)
@@ -60,7 +77,7 @@ function handleDigitClick(digit) {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`);
         logCounter++;
-
+    
     } else if (isResult === true) {
         displayValue = digit;
         isResult = false;
@@ -78,7 +95,9 @@ function handleDigitClick(digit) {
         logCounter++;
 
     } else {
-        displayValue = displayValue * 10 + digit;
+        let displayValueString = displayValue.toString();
+        let appendedDisplayValueString = displayValueString + digit;
+        displayValue = parseFloat(appendedDisplayValueString);
         isResult = false;
         isChaining = false;
         valueB = undefined;
@@ -160,9 +179,21 @@ function handleOperatorClick(opr) {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`);
     
+    } else if (displayValue === undefined) { // For when decimal assigned without decimal number e.g "5." See handleDecimalClick
+        console.log(`${logCounter}: Ping 1, There is nothing to operate on, nothing happened
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+
     } else if (displayValue === 0 && valueA === undefined && valueB === undefined && mathOperator === undefined) {
         handleClearClick();
-        console.log(`${logCounter}: Ping 1, There is nothing to operate on, operator that was clicked clears calculator
+        console.log(`${logCounter}: Ping 2, There is nothing to operate on, operator that was clicked clears calculator
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -182,7 +213,7 @@ function handleOperatorClick(opr) {
         isResult = false;
         operatorAssigned = true;
         isChaining = true;
-        console.log(`${logCounter}: Ping 2, operator ${mathOperator} has been assigned
+        console.log(`${logCounter}: Ping 3, operator ${mathOperator} has been assigned
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -198,7 +229,7 @@ function handleOperatorClick(opr) {
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
-        console.log(`${logCounter}: Ping 3, chaining has occured, previous values were calculated and displayed first
+        console.log(`${logCounter}: Ping 4, chaining has occured, previous values were calculated and displayed first
         calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}`);
         valueA = cleanResult
         valueB = undefined;
@@ -219,12 +250,12 @@ function handleOperatorClick(opr) {
 
     } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true 
     && isResult === false && isChaining === true) {
-        
+
         mathOperator = opr;
         isResult = false;
         operatorAssigned = true;
         isChaining = true;
-        console.log(`${logCounter}: Ping 4, chaining has occured without valueB being assigned, no values have been calculated, only operator is affected
+        console.log(`${logCounter}: Ping 5, chaining has occured without valueB being assigned, no values have been calculated, operator is reassigned
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -247,7 +278,6 @@ divide.addEventListener("click", () => handleOperatorClick("/"));
 const equalsTo = document.querySelector(".equals-to");
 function handleEqualsToClick() {
     if (isNaN(valueA)) {
-        display.textContent = displayValue;
         console.log(`${logCounter}: There is nothing to operate on, nothing happens
         Values
         displayValue: ${displayValue} 
@@ -335,6 +365,60 @@ function handleEqualsToClick() {
 };
 
 equalsTo.addEventListener("click", handleEqualsToClick);
+
+// Functions that handle decimal click
+
+const decimal = document.querySelector(".decimal");
+
+function handleDecimalClick() {
+    if (displayValue === 0) {
+        decimalDisplay = displayValue.toString() + ".";
+        display.textContent = decimalDisplay;
+        console.log(`${logCounter}: DisplayValue is 0, 0.x decimal was created
+        Values
+        display shows: ${decimalDisplay}    
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+
+    } else if (decimalDisplay.toString().includes(".")) {
+        // does nothing when displayValue is already a float, decimal button negated
+        console.log(`${logCounter}: DisplayValue is already contains decimal point, nothing happened as a result
+        Values
+        display shows: ${decimalDisplay}    
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+    
+    } else if (!displayValue.toString().includes(".")) {
+        decimalDisplay = displayValue.toString() + ".";
+        display.textContent = decimalDisplay;
+        displayValue = undefined; // Useful in case operator clicked prematurely
+        console.log(`${logCounter}: Decimal point was appended
+        Values
+        display shows: ${decimalDisplay}    
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+    }
+};
+
+decimal.addEventListener("click", handleDecimalClick);
 
 // Clear calculator feature
 function handleClearClick () {
