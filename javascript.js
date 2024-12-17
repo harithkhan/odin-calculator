@@ -193,7 +193,7 @@ function handleToggleNegative() {
         operatorAssigned: ${operatorAssigned}
         isChaining: ${isChaining}`)
 
-    } else if (displayValue !== 0) { // Handles toggle negative when there is a display value
+    } else if (!isNaN(displayValue)) { // Handles toggle negative when there is a display value
         displayValue = displayValue * -1;
         display.textContent = displayValue;
         console.log(`${logCounter}: Toggle-negative was clicked, calculator operates on negative of display value
@@ -212,12 +212,13 @@ function handleToggleNegative() {
 toggleNegative.addEventListener("click", handleToggleNegative)
 
 function toToggleNegative() { // To remove display of toggle-negative button when it can't be used
-    if (displayValue !== 0 || isResult) {
-        toggleNegative.textContent = "(+/-)";
-
-    } else if (isChaining || (displayValue === 0 && decimalDisplay.toString().includes("."))) {
+    if (isChaining || (isNaN(displayValue) && decimalDisplay.toString().includes(".")) 
+        || (isResult && operatorAssigned)) {
         toggleNegative.textContent = "";
-    };
+        
+    } else {
+        toggleNegative.textContent = "(+/-)";
+    }
 };
 
 // Function that rounds off results from math operators
@@ -453,7 +454,8 @@ function handleDecimalClick() {
         isResult = false;
         isChaining = false; 
         valueB = undefined;
-        console.log(`${logCounter}: DisplayValue is 0, 0.x decimal was created
+        displayValue = undefined;
+        console.log(`${logCounter}: DisplayValue is undefined, 0.x decimal was created
         Values
         display shows: ${decimalDisplay}    
         displayValue: ${displayValue} 
