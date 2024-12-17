@@ -165,7 +165,7 @@ const multiply = document.querySelector(".multiply");
 const divide = document.querySelector(".divide");
 
 function handleOperatorClick(opr) {
-    if (mathOperator === "/" && displayValue === 0) {
+    if (mathOperator === "/" && displayValue === 0 && isChaining === false) {
         display.textContent = "you can't break me";
         displayValue = 0;
         console.log(`${logCounter}: Tried to divide by 0
