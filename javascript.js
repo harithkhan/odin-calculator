@@ -95,7 +95,7 @@ function handleDigitClick(digit) {
         isChaining: ${isChaining}`);
         logCounter++;
     
-    } else if (isResult === true) {
+    } else if (isResult || isChaining) {
         displayValue = digit;
         isResult = false;
         isChaining = false;
@@ -270,7 +270,7 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
     
     } else if (displayValue === undefined) { // For when decimal assigned without decimal number e.g "5." See handleDecimalClick
-        console.log(`${logCounter}: Ping 1, There is nothing to operate on, nothing happened
+        console.log(`${logCounter}: Ping 1, ${opr} was clicked, there is nothing to operate on, nothing happened
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -282,7 +282,7 @@ function handleOperatorClick(opr) {
         logCounter++;
 
     } else if (displayValue === 0 && valueA === undefined && valueB === undefined && mathOperator === undefined) {
-        console.log(`${logCounter}: Ping 2, There is nothing to operate on
+        console.log(`${logCounter}: Ping 2, ${opr} was clicked, there is nothing to operate on
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -321,15 +321,15 @@ function handleOperatorClick(opr) {
         if (cleanResult.toString().length > 15) { // Prevent overflow
             display.style.fontSize = "22px";
         };
-        console.log(`${logCounter}: Ping 4, chaining has occured, previous values were calculated and displayed first
+        console.log(`${logCounter}: Ping 4, ${opr} was clicked, chaining has occured, previous values were calculated and displayed first
         calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}`);
         valueA = cleanResult
         valueB = undefined;
-        displayValue = 0;
+        displayValue = valueA;
         mathOperator = opr;
         isResult = true;
         operatorAssigned = true;
-        isChaining = false;
+        isChaining = true;
         console.log(`Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -340,14 +340,14 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
         logCounter++;
 
-    } else if (displayValue === 0 && !isNaN(valueA) && valueB === undefined && operatorAssigned === true 
-    && isResult === false && isChaining === true) {
+    } else if (!isNaN(valueA) && valueB === undefined && operatorAssigned === true 
+    && isChaining === true) {
 
         mathOperator = opr;
         isResult = false;
         operatorAssigned = true;
         isChaining = true;
-        console.log(`${logCounter}: Ping 5, chaining has occured without valueB being assigned, no values have been calculated, operator is reassigned
+        console.log(`${logCounter}: Ping 5, ${opr} was clicked, chaining has occured without valueB being assigned, no values have been calculated, operator is reassigned
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -645,6 +645,22 @@ function toHandleDelete() {
         isChaining: ${isChaining}`)
         logCounter++;
 
+    } else if (displayValue < 0 && displayValue.toString().length === 2) {
+        displayValue = 0;
+        display.textContent = 0;
+        decimalDisplay = "";
+        isResult = false;
+        console.log(`${logCounter}: Delete was clicked while display value was a negative single digit, display value is now zero
+        Values
+        displayValue: ${displayValue} 
+        valueA: ${valueA} 
+        valueB: ${valueB}
+        mathOperator: ${mathOperator}
+        isResult: ${isResult}
+        operatorAssigned: ${operatorAssigned}
+        isChaining: ${isChaining}`);
+        logCounter++;
+
     } else {
         let deletedDisplay = displayValue.toString().slice(0, -1);
         displayValue = parseFloat(deletedDisplay);
@@ -658,7 +674,7 @@ function toHandleDelete() {
         mathOperator: ${mathOperator}
         isResult: ${isResult}
         operatorAssigned: ${operatorAssigned}
-        isChaining: ${isChaining}`)
+        isChaining: ${isChaining}`);
         logCounter++;
     }
     toToggleNegative();
