@@ -21,11 +21,16 @@ body {
 }
 
 .notes-content {
-    height: 400px;
+    height: 550px;
     width: 500px;
-    /* border: 1px solid black; */
-    margin: 120px 0 0 0;
+    border: 3px solid black;
+    border-radius: 20px;
+    margin: 150px 0 0 0;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background: #163a0a;
+    color: white;
 }
 
 .notes-title {
@@ -34,7 +39,11 @@ body {
 }
 
 .notes-content div {
-    margin: 0 0 0 18px;
+    margin: 20px 0 0 26px;
+}
+
+.keyboard-support {
+    font-size: 22px;
 }
 
 .title-and-calculator {
@@ -45,7 +54,6 @@ body {
     width: 500px;
     height: 710px;
 }
-
 
 .title {
     font-size: 60px;
@@ -118,6 +126,7 @@ body {
 ul {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 12px;
+    padding: 0 10px 0 30px;
 }
 
