@@ -115,6 +115,18 @@ body {
     font-size: 30px;
 }
 
+.btn:hover {
+    background-color: #dfffd4;
+    border-color: #0a2103;
+    color: #0a2103;
+}
+
+.btn:active {
+    background-color: #dfffd4;
+    border-color: #0a2103;
+    color: #0a2103;
+}
+
 .buttons-row-1 .delete, .clear, .toggle-negative {
     font-size: 18px;
 }
