@@ -683,7 +683,7 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "n" || event.key === "N") handleToggleNegative();
     if (event.key === "+") handleOperatorClick("+");
     if (event.key === "-") handleOperatorClick("-");
-    if (event.key === "*") handleOperatorClick("*");
+    if (event.key === "*" || event.key === "x" || event.key === "X") handleOperatorClick("*");
     if (event.key === "/") handleOperatorClick("/");
     if (event.key === "=" || event.key === "Enter") handleEqualsToClick();
     if (event.key === ".") handleDecimalClick();
