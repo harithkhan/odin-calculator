@@ -687,6 +687,10 @@ document.addEventListener("keydown", (event) => {
     if (event.key === "/") handleOperatorClick("/");
     if (event.key === "=" || event.key === "Enter") handleEqualsToClick();
     if (event.key === ".") handleDecimalClick();
-    if (event.key === "Backspace" && event.shiftKey) handleClearClick(); 
+    if (event.key === " ") { 
+        handleClearClick();
+        event.preventDefault(); // Prevent page scroll on spacebar
+        handleClearClick(); // Example action for spacebar
+    } 
     if (event.key === "Backspace") toHandleDelete(); 
 });
