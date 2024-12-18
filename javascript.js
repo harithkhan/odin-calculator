@@ -318,6 +318,9 @@ function handleOperatorClick(opr) {
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
+        if (cleanResult.toString().length > 15) { // Prevent overflow
+            display.style.fontSize = "22px";
+        };
         console.log(`${logCounter}: Ping 4, chaining has occured, previous values were calculated and displayed first
         calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}`);
         valueA = cleanResult
@@ -407,6 +410,9 @@ function handleEqualsToClick() {
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
+        if (cleanResult.toString().length > 15) { // Prevent overflow
+            display.style.fontSize = "22px";
+        };
         displayValue = cleanResult;
         isResult = true;
         operatorAssigned = false;
@@ -432,6 +438,9 @@ function handleEqualsToClick() {
         let result = operator(mathOperator, valueA, valueB);
         let cleanResult = roundedResult(result);
         display.textContent = cleanResult;
+        if (cleanResult.toString().length > 15) { // Prevent overflow
+            display.style.fontSize = "22px";
+        };
         displayValue = cleanResult;
         isResult = true;
         operatorAssigned = false;
@@ -562,6 +571,7 @@ function handleClearClick () {
     operatorAssigned = false;
     isChaining = false;
     decimalDisplay = "";
+    display.style.fontSize = "28px"; // restore font size if changed
     console.log(`${logCounter}: Calculator was cleared
     Values
     displayValue: ${displayValue} 
