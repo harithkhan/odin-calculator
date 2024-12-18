@@ -121,7 +121,7 @@ body {
     color: #0a2103;
 }
 
-.btn:active {
+.btn.active {
     background-color: #dfffd4;
     border-color: #0a2103;
     color: #0a2103;

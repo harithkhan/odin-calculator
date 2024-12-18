@@ -670,27 +670,126 @@ toDelete.addEventListener("click", toHandleDelete);
 // Keyboard Support
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "0") handleDigitClick(0);
-    if (event.key === "1") handleDigitClick(1);
-    if (event.key === "2") handleDigitClick(2);
-    if (event.key === "3") handleDigitClick(3);
-    if (event.key === "4") handleDigitClick(4);
-    if (event.key === "5") handleDigitClick(5);
-    if (event.key === "6") handleDigitClick(6);
-    if (event.key === "7") handleDigitClick(7);
-    if (event.key === "8") handleDigitClick(8);
-    if (event.key === "9") handleDigitClick(9);
-    if (event.key === "n" || event.key === "N") handleToggleNegative();
-    if (event.key === "+") handleOperatorClick("+");
-    if (event.key === "-") handleOperatorClick("-");
-    if (event.key === "*" || event.key === "x" || event.key === "X") handleOperatorClick("*");
-    if (event.key === "/") handleOperatorClick("/");
-    if (event.key === "=" || event.key === "Enter") handleEqualsToClick();
-    if (event.key === ".") handleDecimalClick();
-    if (event.key === " ") { 
+    let button; // Variable to hold the corresponding button element
+    const key = event.key; // Store the key pressed
+
+    if (key === "0") {
+        handleDigitClick(0);
+        button = document.querySelector(".zero");
+    }
+    if (key === "1") {
+        handleDigitClick(1);
+        button = document.querySelector(".one");
+    }
+    if (key === "2") {
+        handleDigitClick(2);
+        button = document.querySelector(".two");
+    }
+    if (key === "3") {
+        handleDigitClick(3);
+        button = document.querySelector(".three");
+    }
+    if (key === "4") {
+        handleDigitClick(4);
+        button = document.querySelector(".four");
+    }
+    if (key === "5") {
+        handleDigitClick(5);
+        button = document.querySelector(".five");
+    }
+    if (key === "6") {
+        handleDigitClick(6);
+        button = document.querySelector(".six");
+    }
+    if (key === "7") {
+        handleDigitClick(7);
+        button = document.querySelector(".seven");
+    }
+    if (key === "8") {
+        handleDigitClick(8);
+        button = document.querySelector(".eight");
+    }
+    if (key === "9") {
+        handleDigitClick(9);
+        button = document.querySelector(".nine");
+    }
+    if (key === "n" || key === "N") {
+        handleToggleNegative();
+        button = document.querySelector(".toggle-negative");
+    }
+    if (key === "+") {
+        handleOperatorClick("+");
+        button = document.querySelector(".add");
+    }
+    if (key === "-") {
+        handleOperatorClick("-");
+        button = document.querySelector(".subtract");
+    }
+    if (key === "*" || key === "x" || key === "X") {
+        handleOperatorClick("*");
+        button = document.querySelector(".multiply");
+    }
+    if (key === "/") {
+        handleOperatorClick("/");
+        button = document.querySelector(".divide");
+    }
+    if (key === "=" || key === "Enter") {
+        handleEqualsToClick();
+        button = document.querySelector(".equals-to");
+    }
+    if (key === ".") {
+        handleDecimalClick();
+        button = document.querySelector(".decimal");
+    }
+    if (key === " ") {
         handleClearClick();
-        event.preventDefault(); // Prevent page scroll on spacebar
-        handleClearClick(); // Example action for spacebar
-    } 
-    if (event.key === "Backspace") toHandleDelete(); 
+        event.preventDefault(); // Prevents scrolling when space is pressed
+        button = document.querySelector(".clear");
+    }
+    if (key === "Backspace") {
+        toHandleDelete();
+        button = document.querySelector(".delete");
+    }
+
+    // Add active class if a corresponding button was found
+    if (button) {
+        button.classList.add("active");
+    }
+});
+
+// Remove the active class when the key is released
+document.addEventListener("keyup", (event) => {
+    const key = event.key;
+    let button;
+
+    switch (key) {
+        case "0": button = document.querySelector(".zero"); break;
+        case "1": button = document.querySelector(".one"); break;
+        case "2": button = document.querySelector(".two"); break;
+        case "3": button = document.querySelector(".three"); break;
+        case "4": button = document.querySelector(".four"); break;
+        case "5": button = document.querySelector(".five"); break;
+        case "6": button = document.querySelector(".six"); break;
+        case "7": button = document.querySelector(".seven"); break;
+        case "8": button = document.querySelector(".eight"); break;
+        case "9": button = document.querySelector(".nine"); break;
+        case "n":
+        case "N": button = document.querySelector(".toggle-negative"); break;
+        case "+": button = document.querySelector(".add"); break;
+        case "-": button = document.querySelector(".subtract"); break;
+        case "*":
+        case "x":
+        case "X": button = document.querySelector(".multiply"); break;
+        case "/": button = document.querySelector(".divide"); break;
+        case "=":
+        case "Enter": button = document.querySelector(".equals-to"); break;
+        case ".": button = document.querySelector(".decimal"); break;
+        case " ": button = document.querySelector(".clear"); break;
+        case "Backspace": button = document.querySelector(".delete"); break;
+    }
+
+    // Remove active class if a corresponding button was found
+    if (button) {
+        button.classList.remove("active");
+    }
 });
