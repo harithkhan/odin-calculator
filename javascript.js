@@ -754,7 +754,7 @@ document.addEventListener("keydown", (event) => {
     // Add active class if a corresponding button was found
     if (button) {
         button.classList.add("active");
-    }
+    };
 });
 
 // Remove the active class when the key is released
@@ -791,5 +791,5 @@ document.addEventListener("keyup", (event) => {
     // Remove active class if a corresponding button was found
     if (button) {
         button.classList.remove("active");
-    }
+    };
 });
