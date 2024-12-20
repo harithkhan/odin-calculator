@@ -281,19 +281,7 @@ function handleOperatorClick(opr) {
         isChaining: ${isChaining}`);
         logCounter++;
 
-    } else if (displayValue === 0 && valueA === undefined && valueB === undefined && mathOperator === undefined) {
-        console.log(`${logCounter}: Ping 2, ${opr} was clicked, there is nothing to operate on
-        Values
-        displayValue: ${displayValue} 
-        valueA: ${valueA} 
-        valueB: ${valueB}
-        mathOperator: ${mathOperator}
-        isResult: ${isResult}
-        operatorAssigned: ${operatorAssigned}
-        isChaining: ${isChaining}`);
-        logCounter++;
-
-    } else if (displayValue !== 0 && valueA === undefined && valueB === undefined && mathOperator === undefined 
+    } else if (valueA === undefined && valueB === undefined && mathOperator === undefined 
         && operatorAssigned === false && isChaining === false) {
 
         valueA = displayValue;
@@ -302,7 +290,7 @@ function handleOperatorClick(opr) {
         isResult = false;
         operatorAssigned = true;
         isChaining = true;
-        console.log(`${logCounter}: Ping 3, operator ${mathOperator} has been assigned
+        console.log(`${logCounter}: Ping 2, operator ${mathOperator} has been assigned
         Values
         displayValue: ${displayValue} 
         valueA: ${valueA} 
@@ -321,7 +309,7 @@ function handleOperatorClick(opr) {
         if (cleanResult.toString().length > 15) { // Prevent overflow
             display.style.fontSize = "22px";
         };
-        console.log(`${logCounter}: Ping 4, ${opr} was clicked, chaining has occured, previous values were calculated and displayed first
+        console.log(`${logCounter}: Ping 3, ${opr} was clicked, chaining has occured, previous values were calculated and displayed first
         calculation: ${valueA} ${mathOperator} ${valueB} = ${cleanResult}`);
         valueA = cleanResult
         valueB = undefined;
